@@ -11,44 +11,39 @@ export default function Page() {
         </View>
       </View>
 
-      {/* メモリスト */}
-      <View>
+      {/* メモリスト1 */}
+      <View style={styles.memoListItem}>
         <View>
-          <View>
-            <Text>買い物リスト1</Text>
-            <Text>2023年10月1日 10:00</Text>
-          </View>
-          <View>
-            <Text>X</Text>
-          </View>
+          <Text style={styles.memoListItemTitle}>買い物リスト1</Text>
+          <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
+        </View>
+        <View>
+          <Text>X</Text>
         </View>
       </View>
 
-      {/* メモリスト */}
-      <View>
+      {/* メモリスト2 */}
+      <View style={styles.memoListItem}>
         <View>
-          <View>
-            <Text>買い物リスト2</Text>
-            <Text>2023年10月1日 10:00</Text>
-          </View>
-          <View>
-            <Text>X</Text>
-          </View>
+          <Text style={styles.memoListItemTitle}>買い物リスト1</Text>
+          <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
+        </View>
+        <View>
+          <Text>X</Text>
         </View>
       </View>
 
-      {/* メモリスト */}
-      <View>
+      {/* メモリスト3 */}
+      <View style={styles.memoListItem}>
         <View>
-          <View>
-            <Text>買い物リスト3</Text>
-            <Text>2023年10月1日 10:00</Text>
-          </View>
-          <View>
-            <Text>X</Text>
-          </View>
+          <Text style={styles.memoListItemTitle}>買い物リスト1</Text>
+          <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
+        </View>
+        <View>
+          <Text>X</Text>
         </View>
       </View>
+
 
       <View>
         <Text>+</Text>
@@ -82,5 +77,24 @@ const styles = StyleSheet.create({
     right: 16,
     bottom: 16,
     color: "rgba(255, 255,255, 0.7)"
-  }
+  },
+  memoListItem: {
+    backgroundColor: "#f0f0f0",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 16,
+    paddingHorizontal: 19,
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(0, 0, 0, 0.15)",
+  },
+  memoListItemTitle: {
+    fontSize: 16,
+    lineHeight: 32
+  },
+  memoListItemDate: {
+    fontSize: 12,
+    lineHeight: 18,
+    color: "#848484"
+  },
 });
