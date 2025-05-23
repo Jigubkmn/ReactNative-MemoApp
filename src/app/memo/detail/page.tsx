@@ -17,7 +17,7 @@ export default function Detail() {
         本文用なので使い方を間違えると不自然に見えることもありますので要注意。
         </Text>
       </ScrollView>
-      <CircleButton text="+" style={{top: 160, bottom: ""}} />
+      <CircleButton text="+" style={{top: 160}} />
     </View>
   )
 }
