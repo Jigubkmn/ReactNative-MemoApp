@@ -1,25 +1,5 @@
-import {  View, StyleSheet } from "react-native";
-import { Header } from "../components/Header";
-import { CircleButton } from "../components/CircleButton";
-import { MemoListItems } from "../components/MemoListItems";
+import { Redirect } from "expo-router";
 
-export default function Page() {
-  return (
-    <View style={styles.container}>
-      <Header />
-
-      <MemoListItems />
-      <MemoListItems />
-      <MemoListItems />
-
-      <CircleButton text="+" />
-    </View>
-  );
+export default function Index() {
+  return <Redirect href="/memo/page" />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ffffff",
-  }
-});
