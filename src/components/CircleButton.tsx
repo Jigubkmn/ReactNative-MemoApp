@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, type ViewStyle } from "react-native";
 
 type Props = {
-  text: string;
   style?: ViewStyle;
+  children: React.ReactNode;
 }
 
-export function CircleButton({text, style}: Props) {
+export function CircleButton({style, children}: Props) {
   return(
     <View style={[styles.circleButton, style]}>
-      <Text style={styles.circleButtonLabel}>{text}</Text>
+      <Text style={styles.circleButtonLabel}>{children}</Text>
     </View>
   )
 }
