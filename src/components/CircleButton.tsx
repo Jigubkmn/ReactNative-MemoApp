@@ -1,9 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 
-export function CircleButton() {
+type Props = {
+  text: string;
+}
+
+export function CircleButton({text}: Props) {
   return(
     <View style={styles.circleButton}>
-      <Text style={styles.circleButtonLabel}>+</Text>
+      <Text style={styles.circleButtonLabel}>{text}</Text>
     </View>
   )
 }
