@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { Header } from "../../../components/Header";
 import { CircleButton } from "../../../components/CircleButton";
+import { Feather } from "@expo/vector-icons";
 
 export default function Detail() {
   return(
@@ -17,7 +18,9 @@ export default function Detail() {
         本文用なので使い方を間違えると不自然に見えることもありますので要注意。
         </Text>
       </ScrollView>
-      <CircleButton text="+" style={{top: 160}} />
+      <CircleButton style={{top: 160}}>
+        <Feather name="check" size={40}/>
+      </CircleButton>
     </View>
   )
 }

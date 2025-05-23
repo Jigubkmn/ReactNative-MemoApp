@@ -2,6 +2,7 @@ import {  View, StyleSheet } from "react-native";
 import { Header } from "../../components/Header";
 import { CircleButton } from "../../components/CircleButton";
 import { MemoListItems } from "../../components/MemoListItems";
+import { Feather } from "@expo/vector-icons";
 
 export default function Page() {
   return (
@@ -12,7 +13,9 @@ export default function Page() {
       <MemoListItems />
       <MemoListItems />
 
-      <CircleButton text="+" />
+      <CircleButton>
+        <Feather name="plus" size={40}/>
+      </CircleButton>
     </View>
   );
 }
