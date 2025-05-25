@@ -1,4 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+
 
 export function MemoListItems() {
   return(
@@ -8,7 +10,9 @@ export function MemoListItems() {
         <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
       </View>
       <View>
-        <Text>X</Text>
+        <TouchableOpacity>
+        <AntDesign name="close" size={24} color="#B0B0B0"/>
+        </TouchableOpacity>
       </View>
     </View>
   )
