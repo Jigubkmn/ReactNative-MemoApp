@@ -1,10 +1,15 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity  } from "react-native";
 import { Header } from "../../../components/Header";
 import { Button } from "../../../components/button";
-import { Link } from "expo-router";
+import { Link , router} from "expo-router";
 
 
 export default function SignUp() {
+  const handlePress = () => {
+    // サインイン処理
+    router.push("/memo/page")
+  }
+
   return(
     <View style={styles.container}>
       <Header />
@@ -12,8 +17,7 @@ export default function SignUp() {
         <Text style={styles.title}>Sign Up</Text>
         <TextInput value={'Email address'} style={styles.input} />
         <TextInput value={'Password'} style={styles.input} />
-        {/* <Button label="Submit" onPress={} /> */}
-        <Button label="Submit" />
+        <Button label="Submit" onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
           <Link href="/auth/login/page" asChild>
