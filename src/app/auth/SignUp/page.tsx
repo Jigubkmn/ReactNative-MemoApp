@@ -16,11 +16,13 @@ export default function SignUp() {
     // 会員登録処理
     .then((userCredential) => {
       console.log("userCredential", userCredential.user.uid);
+      router.replace("/memo/page")
     })
     .catch((error) => {
-      console.log("err", error);
+      // console.log("err", error);
+      const {code, message} = error;
+      console.log(code, message);
     })
-    router.push("/memo/page")
   }
 
   return(
