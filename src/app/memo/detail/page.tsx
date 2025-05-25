@@ -1,5 +1,4 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { Header } from "../../../components/Header";
 import { CircleButton } from "../../../components/CircleButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -10,7 +9,6 @@ export default function Detail() {
   }
   return(
     <View style={styles.container}>
-      <Header />
       <View style={styles.memoHeader}>
         <Text style={styles.memoTitle}>買い物リスト</Text>
         <Text style={styles.memoDate}>2023年10月1日  10:00</Text>
@@ -22,7 +20,7 @@ export default function Detail() {
         本文用なので使い方を間違えると不自然に見えることもありますので要注意。
         </Text>
       </ScrollView>
-      <CircleButton style={{top: 160}} onPress={handlePress}>
+      <CircleButton style={{top: 60}} onPress={handlePress}>
         <FontAwesome5 name="pen" size={24}/>
       </CircleButton>
     </View>
