@@ -1,5 +1,4 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
-import { Header } from "../../../components/Header";
 import { Button } from "../../../components/button";
 import { Link, router } from "expo-router";
 
@@ -11,7 +10,6 @@ export default function Login() {
   }
   return(
     <View style={styles.container}>
-      <Header />
       <View style={styles.inner}>
         <Text style={styles.title}>Login</Text>
         <TextInput value={'Email address'} style={styles.input} />

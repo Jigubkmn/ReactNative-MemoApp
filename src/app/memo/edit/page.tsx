@@ -1,5 +1,4 @@
 import { View, TextInput, StyleSheet, KeyboardAvoidingView } from "react-native";
-import { Header } from "../../../components/Header";
 import { CircleButton } from "../../../components/CircleButton";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -10,7 +9,6 @@ export default function Edit() {
   }
   return(
     <KeyboardAvoidingView behavior="height" style={styles.container}>
-      <Header />
       <View style={styles.inputContainer}>
         <TextInput style={styles.input} multiline value="買い物リスト" autoFocus></TextInput>
         <CircleButton>
