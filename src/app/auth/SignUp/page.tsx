@@ -2,12 +2,24 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity  } from "react-nati
 import { Button } from "../../../components/button";
 import { Link , router} from "expo-router";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../config";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handlePress = () => {
-    // サインイン処理
+
+  // 会員登録処理
+  const handlePress = (email: string, password: string) => {
+    // データを渡す
+    createUserWithEmailAndPassword(auth, email, password)
+    // 会員登録処理
+    .then((userCredential) => {
+      console.log("userCredential", userCredential.user.uid);
+    })
+    .catch((error) => {
+      console.log("err", error);
+    })
     router.push("/memo/page")
   }
 
@@ -33,7 +45,7 @@ export default function SignUp() {
           placeholder="Password"
           textContentType="password"
         />
-        <Button label="Submit" onPress={handlePress} />
+        <Button label="Submit" onPress={() => {handlePress(email, password)}} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
           <Link href="/auth/login/page" asChild>
