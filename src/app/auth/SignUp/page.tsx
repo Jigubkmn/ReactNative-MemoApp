@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity  } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert  } from "react-native";
 import { Button } from "../../../components/button";
 import { Link , router} from "expo-router";
 import { useState } from "react";
@@ -16,12 +16,14 @@ export default function SignUp() {
     // 会員登録処理
     .then((userCredential) => {
       console.log("userCredential", userCredential.user.uid);
+      // backボタンを表示させないため
       router.replace("/memo/page")
     })
     .catch((error) => {
       // console.log("err", error);
       const {code, message} = error;
       console.log(code, message);
+      Alert.alert("会員登録処理を失敗しました");
     })
   }
 
