@@ -6,7 +6,8 @@ export default function Login() {
 
   const handlePress = () => {
     // ログイン処理
-    router.push("/memo/page")
+    // pushはstack履歴に追加する処理
+    router.replace("/memo/page")
   }
   return(
     <View style={styles.container}>
