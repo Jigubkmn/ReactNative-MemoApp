@@ -1,16 +1,25 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Button } from "../../../components/button";
 import { Link, router } from "expo-router";
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../config";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handlePress = () => {
+  const handlePress = (email: string, password: string) => {
     // ログイン処理
-    // pushはstack履歴に追加する処理
-    router.replace("/memo/page")
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log("userCredential", userCredential.user.uid);
+      router.replace("/memo/page")
+    })
+    .catch((error) => {
+      console.log("error", error);
+      Alert.alert("ログインに失敗しました");
+    })
   }
   return(
     <View style={styles.container}>
@@ -34,10 +43,10 @@ export default function Login() {
           placeholder="Password"
           textContentType="password"
         />
-        <Button label="Submit" onPress={handlePress} />
+        <Button label="Submit" onPress={() => {handlePress(email, password)}} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
-          <Link href="/auth/signUp/page" asChild>
+          <Link href="/auth/signUp/page" asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerLink}>Sign up here!</Text>
             </TouchableOpacity>

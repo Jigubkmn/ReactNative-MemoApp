@@ -52,7 +52,7 @@ export default function SignUp() {
         <Button label="Submit" onPress={() => {handlePress(email, password)}} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
-          <Link href="/auth/login/page" asChild>
+          <Link href="/auth/login/page" asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerLink}>Log in.</Text>
             </TouchableOpacity>
