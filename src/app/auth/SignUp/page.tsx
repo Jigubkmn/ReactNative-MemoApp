@@ -1,14 +1,30 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity  } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert  } from "react-native";
 import { Button } from "../../../components/button";
 import { Link , router} from "expo-router";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../config";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handlePress = () => {
-    // サインイン処理
-    router.push("/memo/page")
+
+  // 会員登録処理
+  const handlePress = (email: string, password: string) => {
+    // データを渡す
+    createUserWithEmailAndPassword(auth, email, password)
+    // 会員登録処理
+    .then((userCredential) => {
+      console.log("userCredential", userCredential.user.uid);
+      // backボタンを表示させないため
+      router.replace("/memo/page")
+    })
+    .catch((error) => {
+      // console.log("err", error);
+      const {code, message} = error;
+      console.log(code, message);
+      Alert.alert("会員登録処理を失敗しました");
+    })
   }
 
   return(
@@ -33,7 +49,7 @@ export default function SignUp() {
           placeholder="Password"
           textContentType="password"
         />
-        <Button label="Submit" onPress={handlePress} />
+        <Button label="Submit" onPress={() => {handlePress(email, password)}} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
           <Link href="/auth/login/page" asChild>
