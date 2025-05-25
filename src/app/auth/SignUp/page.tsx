@@ -1,5 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { Header } from "../../../components/Header";
+import { Button } from "../../../components/button";
 
 export default function SignUp() {
   return(
@@ -9,9 +10,7 @@ export default function SignUp() {
         <Text style={styles.title}>Sign Up</Text>
         <TextInput value={'Email address'} style={styles.input} />
         <TextInput value={'Password'} style={styles.input} />
-        <View style={styles.button}>
-          <Text style={styles.buttonLabel}>Submit</Text>
-        </View>
+        <Button label="Submit" />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
           <Text style={styles.footerLink}>Log in.</Text>
@@ -44,19 +43,6 @@ const styles = StyleSheet.create({
     padding: 8,
     fontSize: 16,
     marginBottom: 16,
-  },
-  button: {
-    backgroundColor: "#467FD3",
-    borderRadius: 4,
-    alignSelf: "flex-start",
-    marginBottom: 24,
-  },
-  buttonLabel: {
-    fontSize: 16,
-    lineHeight: 32,
-    color: "#ffffff",
-    paddingVertical: 8,
-    paddingHorizontal: 24,
   },
   footer: {
     flexDirection: "row",
