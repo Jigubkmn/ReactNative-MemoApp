@@ -1,9 +1,11 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity  } from "react-native";
 import { Button } from "../../../components/button";
 import { Link , router} from "expo-router";
-
+import { useState } from "react";
 
 export default function SignUp() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handlePress = () => {
     // サインイン処理
     router.push("/memo/page")
@@ -13,8 +15,24 @@ export default function SignUp() {
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Sign Up</Text>
-        <TextInput value={'Email address'} style={styles.input} />
-        <TextInput value={'Password'} style={styles.input} />
+        <TextInput
+          value={email}
+          style={styles.input}
+          onChangeText={(text) => setEmail(text)}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          placeholder="Email address"
+          textContentType="emailAddress"
+          />
+        <TextInput
+          value={password}
+          style={styles.input}
+          onChangeText={(text) => setPassword(text)}
+          autoCapitalize="none"
+          secureTextEntry={true}
+          placeholder="Password"
+          textContentType="password"
+        />
         <Button label="Submit" onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
