@@ -1,20 +1,23 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { Link} from "expo-router";
 
 
 export function MemoListItems() {
   return(
-    <View style={styles.memoListItem}>
-      <View>
-        <Text style={styles.memoListItemTitle}>買い物リスト1</Text>
-        <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
-      </View>
-      <View>
-        <TouchableOpacity>
-        <AntDesign name="close" size={24} color="#B0B0B0"/>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <Link href="/memo/detail/page" asChild>
+      <TouchableOpacity style={styles.memoListItem}>
+        <View>
+          <Text style={styles.memoListItemTitle}>買い物リスト1</Text>
+          <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
+        </View>
+        <View>
+          <TouchableOpacity>
+          <AntDesign name="close" size={24} color="#B0B0B0"/>
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    </Link>
   )
 }
 

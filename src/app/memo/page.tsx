@@ -3,6 +3,11 @@ import { Header } from "../../components/Header";
 import { CircleButton } from "../../components/CircleButton";
 import { MemoListItems } from "../../components/MemoListItems";
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
+
+const handlePress = () => {
+  router.push("/memo/create/page")
+}
 
 export default function Page() {
   return (
@@ -13,7 +18,7 @@ export default function Page() {
       <MemoListItems />
       <MemoListItems />
 
-      <CircleButton>
+      <CircleButton onPress={handlePress}>
         <Feather name="plus" size={40}/>
       </CircleButton>
     </View>
