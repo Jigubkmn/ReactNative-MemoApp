@@ -10,6 +10,7 @@ export default function SignUp() {
         <Text style={styles.title}>Sign Up</Text>
         <TextInput value={'Email address'} style={styles.input} />
         <TextInput value={'Password'} style={styles.input} />
+        {/* <Button label="Submit" onPress={} /> */}
         <Button label="Submit" />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
