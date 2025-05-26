@@ -8,8 +8,9 @@ import { db, auth } from "../../../config"
 
 export default function Edit() {
   const handlePress = () => {
+    if (auth.currentUser === null) { return }
     // auth.currentUser?.uid：ログインユーザーのid
-    const ref = collection(db, `users/${auth.currentUser?.uid}/memos`)
+    const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
     addDoc(ref, {
       bodyText: 'test'
     })
