@@ -13,7 +13,8 @@ export function MemoListItems({memo}: Props) {
     <Link href="/memo/detail/page" asChild>
       <TouchableOpacity style={styles.memoListItem}>
         <View>
-          <Text style={styles.memoListItemTitle}>{memo.bodyText}</Text>
+          {/* numberOfLines：1行に収まらない場合は省略 */}
+          <Text style={styles.memoListItemTitle} numberOfLines={1}>{memo.bodyText}</Text>
           <Text style={styles.memoListItemDate}>{updateAt}</Text>
         </View>
         <View>
