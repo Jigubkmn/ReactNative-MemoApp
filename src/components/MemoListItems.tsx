@@ -1,15 +1,21 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Link} from "expo-router";
+import { type Memo } from "../../types/memo"
 
+type Props = {
+  memo: Memo
+}
 
-export function MemoListItems() {
+export function MemoListItems({memo}: Props) {
+  const updateAt = memo.updateAt.toDate().toLocaleString()
   return(
     <Link href="/memo/detail/page" asChild>
       <TouchableOpacity style={styles.memoListItem}>
         <View>
-          <Text style={styles.memoListItemTitle}>買い物リスト1</Text>
-          <Text style={styles.memoListItemDate}>2023年10月1日 10:00</Text>
+          {/* numberOfLines：1行に収まらない場合は省略 */}
+          <Text style={styles.memoListItemTitle} numberOfLines={1}>{memo.bodyText}</Text>
+          <Text style={styles.memoListItemDate}>{updateAt}</Text>
         </View>
         <View>
           <TouchableOpacity>
