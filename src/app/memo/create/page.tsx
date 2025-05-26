@@ -1,10 +1,25 @@
 import { View, TextInput, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { CircleButton } from "../../../components/CircleButton";
 import { Feather } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router } from "expo-router"
+import { collection, addDoc } from "firebase/firestore"
+// import { db } from "../../../firebase"
+import { db, auth } from "../../../config"
 
 export default function Edit() {
   const handlePress = () => {
+    // auth.currentUser?.uid：ログインユーザーのid
+    const ref = collection(db, `users/${auth.currentUser?.uid}/memos`)
+    addDoc(ref, {
+      bodyText: 'test'
+    })
+    // docRef：作成されたドキュメント
+    .then((docRef) => {
+      console.log('success', docRef.id)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
     router.back()
   }
 
