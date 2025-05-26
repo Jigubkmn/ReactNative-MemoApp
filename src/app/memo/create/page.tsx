@@ -1,10 +1,11 @@
-import { View, TextInput, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { CircleButton } from "../../../components/CircleButton";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router"
 import { collection, addDoc, Timestamp } from "firebase/firestore"
 import { db, auth } from "../../../config"
 import { useState } from "react"
+import KeyboardAvoidingView from "../../../components/KeyboardAvoidingView"
 
 export default function Edit() {
   const [bodyText, setBodyText] = useState('')
@@ -28,7 +29,7 @@ export default function Edit() {
   }
 
   return(
-    <KeyboardAvoidingView behavior="height" style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
         style={styles.input}
