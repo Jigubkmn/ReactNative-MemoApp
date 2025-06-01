@@ -20,7 +20,6 @@ export default function SignUp() {
       router.replace("/memo/page")
     })
     .catch((error) => {
-      // console.log("err", error);
       const {code, message} = error;
       console.log(code, message);
       Alert.alert("会員登録処理を失敗しました");

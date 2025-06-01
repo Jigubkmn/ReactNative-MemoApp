@@ -1,4 +1,4 @@
-import {  View, StyleSheet } from "react-native";
+import {  View, StyleSheet, FlatList } from "react-native";
 import { CircleButton } from "../../components/CircleButton";
 import { MemoListItems } from "../../components/MemoListItems";
 import { Feather } from "@expo/vector-icons";
@@ -38,7 +38,6 @@ export default function Page() {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const remoteMemos: Memo[] = []
       snapshot.forEach((doc) => {
-        console.log("memo", doc.data())
         const {bodyText, updateAt} = doc.data()
         remoteMemos.push({
           id: doc.id,
@@ -50,18 +49,14 @@ export default function Page() {
     })
     // 監視を削除
     return unsubscribe
-  }, )
+  }, [])
 
   return (
     <View style={styles.container}>
-      {memos.map((memo) => {
-        return (
-          <MemoListItems
-            memo={memo}
-          />
-        )
-
-      })}
+      <FlatList
+        data={memos}
+        renderItem={({item}) => <MemoListItems memo={item}/>}
+      />
       <CircleButton onPress={handlePress}>
         <Feather name="plus" size={40}/>
       </CircleButton>
