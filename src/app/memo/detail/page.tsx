@@ -1,23 +1,44 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { CircleButton } from "../../../components/CircleButton";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
+import { onSnapshot, doc } from "firebase/firestore";
+import { db, auth } from "../../../config";
+import { type Memo } from "../../../../types/memo";
+import { useEffect, useState } from "react";
+
+
 
 export default function Detail() {
+  const [memo, setMemo] = useState<Memo | null>(null);
+  const { id } = useLocalSearchParams()
   const handlePress = () => {
     router.push("/memo/edit/page")
   }
+
+  useEffect(() => {
+    if (auth.currentUser === null) { return }
+    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, String(id))
+    const unsubscribe = onSnapshot(ref, (memoDoc) => {
+      const { bodyText, updateAt } = memoDoc.data() as Memo
+      setMemo({
+        id: memoDoc.id,
+        bodyText,
+        updateAt
+      })
+    })
+    return unsubscribe
+  }, [])
+
   return(
     <View style={styles.container}>
       <View style={styles.memoHeader}>
-        <Text style={styles.memoTitle}>買い物リスト</Text>
-        <Text style={styles.memoDate}>2023年10月1日  10:00</Text>
+        <Text style={styles.memoTitle} numberOfLines={1}>{memo?.bodyText}</Text>
+        <Text style={styles.memoDate}>{memo?.updateAt.toDate().toLocaleString("ja-JP")}</Text>
       </View>
       <ScrollView style={styles.memoBody}>
         <Text style={styles.memoBodyText}>
-        買い物リスト
-        書体やレイアウトなどを確認するために用います。
-        本文用なので使い方を間違えると不自然に見えることもありますので要注意。
+          {memo?.bodyText}
         </Text>
       </ScrollView>
       <CircleButton style={{top: 60}} onPress={handlePress}>
@@ -51,10 +72,10 @@ const styles = StyleSheet.create({
     color: "#ffffff",
   },
   memoBody: {
-    paddingVertical: 32,
     paddingHorizontal: 27,
   },
   memoBodyText: {
+    paddingVertical: 32,
     fontSize: 16,
     lineHeight: 24,
     color: "#000000",

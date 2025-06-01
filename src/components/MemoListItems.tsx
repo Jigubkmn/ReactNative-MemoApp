@@ -13,7 +13,10 @@ export function MemoListItems({memo}: Props) {
 
   if (bodyText === null || updateAt === null) { return null}
   return(
-    <Link href="/memo/detail/page" asChild>
+    <Link
+      href={{pathname: "/memo/detail/page", params: {id: memo.id}}}
+      asChild
+    >
       <TouchableOpacity style={styles.memoListItem}>
         <View>
           {/* numberOfLines：1行に収まらない場合は省略 */}
