@@ -1,18 +1,62 @@
-import { View, TextInput, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, TextInput, StyleSheet, Alert } from "react-native";
 import { CircleButton } from "../../../components/CircleButton";
 import { Feather } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import KeyboardAvoidingView from "../../../components/KeyboardAvoidingView";
+// getDoc：ドキュメントを取得
+// setDoc：ドキュメントを更新
+import { auth, db } from "../../../config";
 
 export default function Edit() {
-  const handlePress = () => {
-    router.back()
+  const id = String(useLocalSearchParams().id)
+  const [bodyText, setBodyText] = useState('')
+
+  const handlePress = (id: string, bodyText: string) => {
+    if (auth.currentUser === null) { return }
+    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id)
+    // ドキュメント更新
+    setDoc(ref, {
+      bodyText,
+      createdAt: Timestamp.now(),
+      updatedAt: Timestamp.now(),
+    })
+      .then(() => {
+        router.back()
+      })
+      .catch((error) => {
+      console.log(error)
+        Alert.alert("メモの更新に失敗しました")
+      })
   }
+
+  useEffect(() => {
+    if (auth.currentUser === null) { return }
+    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id)
+    // ドキュメントを取得
+    getDoc(ref).then((docRef) => {
+      const RemoteBodyText = docRef.data()?.bodyText
+      setBodyText(RemoteBodyText)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }, [])
   return(
-    <KeyboardAvoidingView behavior="height" style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} multiline value="買い物リスト" autoFocus></TextInput>
-        <CircleButton>
-          <Feather name="check" size={40} onPress={handlePress}/>
+        <TextInput
+          style={styles.input}
+          multiline
+          value={bodyText}
+          autoFocus
+          onChangeText={(text) => { setBodyText(text) }}
+        >
+        </TextInput>
+        <CircleButton onPress={() => {handlePress(id, bodyText)}}>
+          <Feather name="check" size={40} />
         </CircleButton>
       </View>
     </KeyboardAvoidingView>
