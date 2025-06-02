@@ -1,9 +1,10 @@
-import { View, TextInput, StyleSheet, KeyboardAvoidingView, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert } from "react-native";
 import { CircleButton } from "../../../components/CircleButton";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import KeyboardAvoidingView from "../../../components/KeyboardAvoidingView";
 // getDoc：ドキュメントを取得
 // setDoc：ドキュメントを更新
 import { auth, db } from "../../../config";
@@ -44,7 +45,7 @@ export default function Edit() {
 
   }, [])
   return(
-    <KeyboardAvoidingView behavior="height" style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -54,8 +55,8 @@ export default function Edit() {
           onChangeText={(text) => { setBodyText(text) }}
         >
         </TextInput>
-        <CircleButton>
-          <Feather name="check" size={40} onPress={() => {handlePress(id, bodyText)}}/>
+        <CircleButton onPress={() => {handlePress(id, bodyText)}}>
+          <Feather name="check" size={40} />
         </CircleButton>
       </View>
     </KeyboardAvoidingView>
