@@ -35,7 +35,9 @@ export default function Detail() {
     <View style={styles.container}>
       <View style={styles.memoHeader}>
         <Text style={styles.memoTitle} numberOfLines={1}>{memo?.bodyText}</Text>
-        <Text style={styles.memoDate}>{memo?.updateAt.toDate().toLocaleString("ja-JP")}</Text>
+        <Text style={styles.memoDate}>
+          {memo?.updateAt?.toDate().toLocaleString("ja-JP")}
+        </Text>
       </View>
       <ScrollView style={styles.memoBody}>
         <Text style={styles.memoBodyText}>
